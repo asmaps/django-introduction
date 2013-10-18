@@ -23,6 +23,7 @@
         <script>
             document.write( '<link rel="stylesheet" href="reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
         </script>
+        <link rel="stylesheet" href="reveal.js/css/print/paper.css" type="text/css" media="print">
     </head>
 
     <body>
@@ -38,7 +39,7 @@
                     <embed name="django-logo-negative" src="img/django-logo-negative.svg" width="505" height="216">
                     <p>Schnell performante<br>Web-Applikationen entwickeln</p>
                     <p>Eine Einführung</p>
-                    <p>Live mitlesen   auf <br><a href="http://presentation.selfnet.de/arnes/django/">http://presentation.selfnet.de/arnes/django/</a></p>
+                    <p>Live mitlesen auf <br><a class="roll" href="http://presentation.selfnet.de/arnes/django-introduction/"><span>http://presentation.selfnet.de/arnes/django-introduction/</span></a></p>
                     <hr>
                     <p>Ein Vortrag von Arne Schauf für das
                         <a href="http://nethack.selfnet.de/">NetHack 2013</a></p>
@@ -312,15 +313,15 @@ Quit the server with CONTROL-C.
                         <p class="fragment"><a href="http://haystacksearch.org/">django-haystack</a></p>
                         <p class="fragment"><a href="https://github.com/celery/django-celery/">django-celery</a></p>
                     </div>
-                    <div style="float: right; width: 50%;">
-                        <p class="fragment"><a href="https://github.com/toastdriven/django-tastypie">django-tastypie</a></p>
-                        <p class="fragment"><a href="https://github.com/tomchristie/django-rest-framework">djangorestframework</a></p>
-                        <p class="fragment"><a href="https://github.com/dnerdy/factory_boy">factory_boy</a>
-                        <p class="fragment"><a href="https://github.com/gabrielfalcao/HTTPretty">httpretty</a></p>
-                        <p class="fragment"><a href="https://github.com/kmmbvnr/django-jenkins">django-jenkins</a></p>
-                        <p class="fragment"><a href="http://gunicorn.org/">gunicorn</a></p>
-                        <p class="fragment"><a href="https://github.com/jezdez/django_compressor">django_compressor</a></p>
-                        <p class="fragment"><a href="https://pypi.python.org/pypi/django-secure">django-secure</a></p>
+                    <div style="float: right; width: 50%;" class="fragment roll-in">
+                        <p class=""><a href="https://github.com/toastdriven/django-tastypie">django-tastypie</a></p>
+                        <p class=""><a href="https://github.com/tomchristie/django-rest-framework">djangorestframework</a></p>
+                        <p class=""><a href="https://github.com/dnerdy/factory_boy">factory_boy</a>
+                        <p class=""><a href="https://github.com/gabrielfalcao/HTTPretty">httpretty</a></p>
+                        <p class=""><a href="https://github.com/kmmbvnr/django-jenkins">django-jenkins</a></p>
+                        <p class=""><a href="http://gunicorn.org/">gunicorn</a></p>
+                        <p class=""><a href="https://github.com/jezdez/django_compressor">django_compressor</a></p>
+                        <p class=""><a href="https://pypi.python.org/pypi/django-secure">django-secure</a></p>
                     </div>
                     <aside class="notes">
                         <ul style="font-size: 0.6em;">
@@ -386,11 +387,12 @@ Quit the server with CONTROL-C.
                 center: true,
 
                 theme: Reveal.getQueryHash().theme || 'night', // available themes are in /css/theme
-                transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/linear(2d)
+                transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/linear(2d)
 
                 // Optional libraries used to extend on reveal.js
                 dependencies: [
                     { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
                     { src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
                     { src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
                     { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
