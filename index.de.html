@@ -1,205 +1,187 @@
 <!doctype html>
 <html lang="de">
 
-	<head>
-		<meta charset="utf-8">
+    <head>
+        <meta charset="utf-8">
 
-		<title>Django - Schnell performante Web-Applikationen entwickeln - Eine Einführung</title>
+        <title>Django - Schnell performante Web-Applikationen entwickeln - Eine Einführung</title>
 
-		<meta name="description" content="Ein kurzes Tutorial zum Einstieg in das Python Web Framework Django.">
-		<meta name="author" content="Markus Zapke-Gründemann et al">
+        <meta name="description" content="Ein kurzes Tutorial zum Einstieg in das Python Web Framework Django.">
+        <meta name="author" content="Arne Schauf (based on Markus Zapke-Gründemann et al)">
 
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-		<link rel="stylesheet" href="reveal.js/css/reveal.min.css">
-		<link rel="stylesheet" href="reveal.js/css/theme/default.css" id="theme">
-		<link rel="stylesheet" href="css/custom.css">
+        <link rel="stylesheet" href="reveal.js/css/reveal.min.css">
+        <link rel="stylesheet" href="reveal.js/css/theme/night.css" id="theme">
+        <link rel="stylesheet" href="css/custom.css">
 
-		<!-- For syntax highlighting -->
-		<link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
 
-		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
-		<script>
-			document.write( '<link rel="stylesheet" href="reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
-		</script>
+        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+        <script>
+            document.write( '<link rel="stylesheet" href="reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+    </head>
 
-		<!--[if lt IE 9]>
-		<script src="reveal.js/lib/js/html5shiv.js"></script>
-		<![endif]-->
-		<script type="text/javascript">
-			var _gaq = _gaq || [];
-			if (document.domain == 'www.django-introduction.com') {
-				_gaq.push(['_setAccount', 'UA-42455252-1']);
-			} else {
-				_gaq.push(['_setAccount', 'UA-42455252-2']);
-			}
-			_gaq.push(['_trackPageview']);
-			(function() {
-				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-			})();
-		</script>
-	</head>
+    <body>
 
-	<body>
+        <div class="reveal">
 
-		<div class="reveal">
+            <!-- Used to fade in a background when a specific slide state is reached -->
+            <div class="state-background"></div>
 
-			<!-- Used to fade in a background when a specific slide state is reached -->
-			<div class="state-background"></div>
-
-			<!-- Any section element inside of this container is displayed as a slide -->
-			<div class="slides">
-				<section class="add-padding">
-					<embed name="django-logo-negative" src="img/django-logo-negative.svg" width="505" height="216">
-					<p>Schnell performante<br>Web-Applikationen entwickeln</p>
-					<p>Eine Einführung</p>
-					<div class="instructions">
-						<p>Durchblättern: <span class="key spacekey">Leertaste</span></p>
-						<p>Navigation: <span class="key">←</span><span class="key">↑</span><span class="key">→</span><span class="key">↓</span></p>
-						<p>Bei Geräten mit Touchscreen in Pfeilrichtung wischen.</p>
-					</div>
-				</section>
-				<section class="overview">
-					<h1>Übersicht</h1>
-					<ol>
-						<a href="#/2"><li>Vorstellung</li></a>
-						<a href="#/3"><li>Was ist Django?</li></a>
-						<a href="#/4"><li>Architektur</li></a>
-						<a href="#/5"><li>Komponenten</li></a>
-						<a href="#/6"><li>Entwicklungsprozess</li></a>
-						<a href="#/7"><li>Django Releases</li></a>
-						<a href="#/8"><li>Django in Zahlen</li></a>
-						<a href="#/9"><li>Django in freier Wildbahn</li></a>
-						<a href="#/10"><li>Deutscher Django-Verein e.V.</li></a>
-						<a href="#/11"><li>Weiterführende Links</li></a>
-						<a href="#/12"><li>Nützliche Django-Anwendungen</li></a>
-						<a href="#/13"><li>Danksagung</li></a>
-					</ol>
-				</section>
-				<section>
-					<section>
-						<h1>Vorstellung</h1>
-					</section>
-					<section class="add-padding">
-						<h2>Markus Zapke-Gründemann</h2>
-						<p>Softwareentwickler seit 2001</p>
-						<p>Softwareentwicklung mit Python, Django und Mercurial</p>
-						<p>Selbstständig seit 2008</p>
-						<p>Inhaber von <a href="http://www.transcode.de/">transcode</a></p>
-						<p><a href="http://www.keimlink.de/">keimlink.de</a> // <a href="https://alpha.app.net/keimlink">@keimlink</a></p>
-					</section>
-				</section>
-				<section>
-					<section>
-						<h1>Was ist Django?</h1>
-					</section>
-					<section>
-						<h2>Django Reinhardt</h2>
-						<a class="image" href="https://commons.wikimedia.org/wiki/File:Django_Reinhardt_(Gottlieb_07301).jpg" target="_blank">
-							<img width="431" height="450" src="img/django_reinhardt.jpg" alt="Django Reinhardt spielt Gitarre">
-						</a>
-						<p><small>* 23.1.1910</small><small style="padding-left: 2em">✝ 16.5.1953</small></p>
-						<aside data-markdown class="notes">
-							<script type="text/template">
-								* Gitarrist, Komponist und Bandleader
-								* Begründer des europäischen Jazz
-								* Sohn von Manouches (französischsprachigen Sinti)
-								* wuchs in einer Wohnwagensiedlung außerhalb von Paris auf
-								* mit 18 Jahren schwere Verletzungen beim Brand seines Wohnwagens
-								* starb an den Folgen eines Schlaganfalls
-							</script>
-						</aside>
-					</section>
-					<section>
-						<h2>Allgemeines</h2>
-						<ul>
-							<li>Web Application Framework</li>
-							<li>In <a href="http://www.python.org/">Python</a> geschrieben</li>
-							<li>Open Source Software (<a href="https://de.wikipedia.org/wiki/BSD-Lizenz">BSD Lizenz</a>)</li>
-							<li>Django Software Foundation (DSF)</li>
-							<li>Umfangreiche Dokumentation</li>
-							<li>Große, freundliche Community</li>
-						</ul>
-					</section>
-					<section>
-						<h2>Philosophie</h2>
-						<ul>
-							<li>Rapid Development</li>
-							<li>Loose Coupling</li>
-							<li>Wiederverwendbare Applikationen</li>
-							<li>Don't Repeat Yourself (DRY)</li>
-						</ul>
-						<blockquote cite="http://c2.com/cgi/wiki?DontRepeatYourself">
-							Every piece of knowledge must have a single, unambiguous, authoritative representation within a system.
-						</blockquote>
-					</section>
-				</section>
-				<section>
-					<section>
-						<h2>Architektur</h2>
-						<p class="huge-text">MTV</p>
-					</section>
-					<section>
-						<h2>Architektur</h2>
-						<dl>
-							<dt>Model</dt>
-							<dd>Daten (Object Relational Mapper)</dd>
-							<dt>Template</dt>
-							<dd>Präsentation (HTML)</dd>
-							<dt>View</dt>
-							<dd>Business Logic (Response)</dd>
-						</dl>
-					</section>
-					<section data-state="request-response">
-						<h2>Architektur</h2>
-						<p id="request-response">
-					</section>
-				</section>
-				<section>
-					<section>
-						<h1>Komponenten</h1>
-					</section>
-					<section>
-						<h2>Komponenten</h2>
-						<ul>
-							<li>Sessions</li>
-							<li>Authentifizierung &amp; Autorisierung</li>
-							<li>Formulare</li>
-							<li>Validierung</li>
-							<li>Serializer (JSON, XML, YAML)</li>
-							<li>Syndication (RSS, Atom)</li>
-						</ul>
-					</section>
-					<section>
-						<h2>Komponenten</h2>
-						<ul>
-							<li>Testing</li>
-							<li>Caching</li>
-							<li>Internationalisierung &amp; Lokalisierung</li>
-							<li>Security</li>
-							<li>File Storage</li>
-							<li>GeoDjango (GIS)</li>
-							<li>interaktive Shell</li>
-						</ul>
-					</section>
-					<section>
-						<h2>Admin</h2>
-						<img src="img/de/admin1.png" alt="Admin - Login">
-					</section>
-					<section>
-						<h2>Admin</h2>
-						<img src="img/de/admin2.png" alt="Admin - Datensatz erstellen">
-					</section>
-					<section>
-						<h2>Admin</h2>
-						<img src="img/de/admin3.png" alt="Admin - Listenansicht">
-					</section>
-					<section>
-						<h2>Eingebauter Entwicklungsserver</h2>
-						<pre><code class="bash">
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section class="add-padding">
+                    <embed name="django-logo-negative" src="img/django-logo-negative.svg" width="505" height="216">
+                    <p>Schnell performante<br>Web-Applikationen entwickeln</p>
+                    <p>Eine Einführung</p>
+                    <p>Live mitlesen   auf <br><a href="http://presentation.selfnet.de/arnes/django/">http://presentation.selfnet.de/arnes/django/</a></p>
+                    <hr>
+                    <p>Ein Vortrag von Arne Schauf für das
+                        <a href="http://nethack.selfnet.de/">NetHack 2013</a></p>
+                    <p><small>basierend auf 
+                        <a href="http://www.django-introduction.com/">www.django-introduction.com</a></small></p>
+                </section>
+                <section class="overview">
+                    <h1>Übersicht</h1>
+                    <ol>
+                        <a href="#/2"><li>Vorstellung</li></a>
+                        <a href="#/3"><li>Was ist Django?</li></a>
+                        <a href="#/4"><li>Architektur</li></a>
+                        <a href="#/5"><li>Komponenten</li></a>
+                        <a href="#/6"><li>Entwicklungsprozess</li></a>
+                        <a href="#/7"><li>Django Releases</li></a>
+                        <a href="#/8"><li>Django in Zahlen</li></a>
+                        <a href="#/9"><li>Django in freier Wildbahn</li></a>
+                        <a href="#/10"><li>Deutscher Django-Verein e.V.</li></a>
+                        <a href="#/11"><li>Weiterführende Links</li></a>
+                        <a href="#/12"><li>Nützliche Django-Anwendungen</li></a>
+                        <a href="#/13"><li>Danksagung</li></a>
+                    </ol>
+                </section>
+                <section>
+                    <section>
+                        <h1>Vorstellung</h1>
+                    </section>
+                    <section class="add-padding">
+                        <h2>Arne Schauf</h2>
+                        <p>Informatik-Student an der <a href="http://www.hft-stuttgart.de/" target="_blank">HfT Stuttgart</a></p>
+                        <p>Aktiv bei Selfnet seit Oktober 2009</p>
+                        <p>Webdevelopment mit Python & Django seit 4 Jahren</p>
+                        <p>Erstes großes Projekt:<br>SWIng 2.0 (Zentrales Selfnet Verwaltungstool)</p>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h1>Was ist Django?</h1>
+                    </section>
+                    <section>
+                        <h2>Django Reinhardt</h2>
+                        <a class="image" href="https://commons.wikimedia.org/wiki/File:Django_Reinhardt_(Gottlieb_07301).jpg" target="_blank">
+                            <img width="431" height="450" src="img/django_reinhardt.jpg" alt="Django Reinhardt spielt Gitarre">
+                        </a>
+                        <p><small>* 23.1.1910</small><small style="padding-left: 2em">✝ 16.5.1953</small></p>
+                        <aside data-markdown class="notes">
+                            <script type="text/template">
+                                * Gitarrist, Komponist und Bandleader
+                                * Begründer des europäischen Jazz
+                                * Sohn von Manouches (französischsprachigen Sinti)
+                                * wuchs in einer Wohnwagensiedlung außerhalb von Paris auf
+                                * mit 18 Jahren schwere Verletzungen beim Brand seines Wohnwagens
+                                * starb an den Folgen eines Schlaganfalls
+                            </script>
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>Allgemeines</h2>
+                        <ul>
+                            <li>Web Application Framework</li>
+                            <li>In <a href="http://www.python.org/">Python</a> geschrieben</li>
+                            <li>Open Source Software (<a href="https://de.wikipedia.org/wiki/BSD-Lizenz">BSD Lizenz</a>)</li>
+                            <li>Django Software Foundation (DSF)</li>
+                            <li>Umfangreiche Dokumentation</li>
+                            <li>Große, freundliche Community</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Philosophie</h2>
+                        <ul>
+                            <li>Rapid Development</li>
+                            <li>Loose Coupling</li>
+                            <li>Wiederverwendbare Applikationen</li>
+                            <li>Don't Repeat Yourself (DRY)</li>
+                        </ul>
+                        <blockquote cite="http://c2.com/cgi/wiki?DontRepeatYourself">
+                            Every piece of knowledge must have a single, unambiguous, authoritative representation within a system.
+                        </blockquote>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Architektur</h2>
+                        <p class="huge-text">MTV</p>
+                    </section>
+                    <section>
+                        <h2>Architektur</h2>
+                        <dl>
+                            <dt>Model</dt>
+                            <dd>Daten (Object Relational Mapper)</dd>
+                            <dt>Template</dt>
+                            <dd>Präsentation (HTML)</dd>
+                            <dt>View</dt>
+                            <dd>Business Logic (Response)</dd>
+                        </dl>
+                    </section>
+                    <section data-state="request-response">
+                        <h2>Architektur</h2>
+                        <p id="request-response">
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h1>Komponenten</h1>
+                    </section>
+                    <section>
+                        <h2>Komponenten</h2>
+                        <ul>
+                            <li>Sessions</li>
+                            <li>Authentifizierung &amp; Autorisierung</li>
+                            <li>Formulare</li>
+                            <li>Validierung</li>
+                            <li>Serializer (JSON, XML, YAML)</li>
+                            <li>Syndication (RSS, Atom)</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Komponenten</h2>
+                        <ul>
+                            <li>Testing</li>
+                            <li>Caching</li>
+                            <li>Internationalisierung &amp; Lokalisierung</li>
+                            <li>Security</li>
+                            <li>File Storage</li>
+                            <li>GeoDjango (GIS)</li>
+                            <li>interaktive Shell</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Admin</h2>
+                        <img src="img/de/admin1.png" alt="Admin - Login">
+                    </section>
+                    <section>
+                        <h2>Admin</h2>
+                        <img src="img/de/admin2.png" alt="Admin - Datensatz erstellen">
+                    </section>
+                    <section>
+                        <h2>Admin</h2>
+                        <img src="img/de/admin3.png" alt="Admin - Listenansicht">
+                    </section>
+                    <section>
+                        <h2>Eingebauter Entwicklungsserver</h2>
+                        <pre><code class="bash">
 $ python manage.py runserver
 Validating models...
 
@@ -214,264 +196,264 @@ Quit the server with CONTROL-C.
 [02/Mar/2013 15:58:49] "GET /admin/ HTTP/1.1" 200 7256
 [02/Mar/2013 15:58:51] "GET /admin/auth/user/ HTTP/1.1" 200 6162
 [02/Mar/2013 15:58:51] "GET /admin/jsi18n/ HTTP/1.1" 200 5467
-						</code></pre>
-						<aside data-markdown class="notes">
-							<script type="text/template">
-								* nur Python und Django sind notwendig
-								* wesentlich schlanker als ein LAMP- oder Java-Stack
-							</script>
-						</aside>
-					</section>
-				</section>
-				<section data-state="development-process">
-					<h2>Entwicklungsprozess</h2>
-					<p id="development-process">
-					<aside data-markdown class="notes">
-						<script type="text/template">
-							* Redakteure pflegen nach dem Erstellen von Models und Admin schon Inhalte
-							* parallel bauen die Entwickler das Frontend
-							* dadurch kommt man schneller zum Launch
-						</script>
-					</aside>
-				</section>
-				<section>
-					<h2>Django Releases</h2>
-					<ul>
-						<li><a href="https://docs.djangoproject.com/en/dev/internals/release-process/">Minor Release alle neun Monate</a></li>
-						<li>API bleibt stabil und abwärtskompatibel</li>
-						<li>Klare und dokumentierte <a href="https://docs.djangoproject.com/en/dev/internals/deprecation/">Deprecation Timeline</a></li>
-						<li><a href="https://docs.djangoproject.com/en/dev/topics/python3/">Python 3 Unterstützung</a> seit Django 1.5</li>
-					</ul>
-				</section>
-				<section>
-					<h2>Django in Zahlen</h2>
-					<ul>
-						<li class="fragment">6.000.000 Besucher der Website pro Monat</li>
-						<li class="fragment">21.700 Abonnenten der <a href="http://groups.google.com/group/django-users">django-users Mailing Liste</a></li>
-						<li class="fragment">über 2.000 Packages im <a href="https://pypi.python.org/pypi">Python Packaging Index</a> (mehr als 10%)</li>
-						<li class="fragment">33 Kern-Entwickler</li>
-						<li class="fragment">über 65 Übersetzungen</li>
-					</ul>
-					<p class="fragment"><small>Stand Mitte 2012
-						<br>Quelle: <a href="http://jacobian.org/writing/django-community/django-community-2012/">
-						Measuring the Django Community: The Django community in 2012</a></small></p>
-				</section>
-				<section>
-					<h2>Django in freier Wildbahn</h2>
-					<div style="float: left; width: 50%;">
-						<p class="fragment"><a href="http://www.guardiannews.com/">The Guardian</a></p>
-						<p class="fragment"><a href="http://www.nytimes.com/">The New York Times</a></p>
-						<p class="fragment"><a href="http://www.washingtonpost.com/">Washington Post</a></p>
-						<p class="fragment"><a href="http://www.discovery.com/">Discovery Channel</a></p>
-						<p class="fragment"><a href="http://www.nationalgeographic.com/">National Geographic</a></p>
-						<p class="fragment"><a href="http://pbskids.org/">PBS Kids</a></p>
-						<p class="fragment"><a href="http://spiel.letztespurberlin.zdf.de/spiel/">ZDF - Die letzte Spur</a></p>
-						<p class="fragment"><a href="http://science.nasa.gov/">NASA Science</a></p>
-					</div>
-					<div style="float: right; width: 50%;">
-						<p class="fragment"><a href="http://disqus.com/">Disqus</a></p>
-						<p class="fragment"><a href="http://instagr.am/">Instagram</a></p>
-						<p class="fragment"><a href="http://www.rdio.com/">Rdio</a></p>
-						<p class="fragment"><a href="https://bitbucket.org/">BitBucket</a></p>
-						<p class="fragment"><a href="https://addons.mozilla.org/">Mozilla Add-Ons</a></p>
-						<p class="fragment"><a href="http://ubuntuusers.de/inyoka/">ubuntuusers.de</a></p>
-						<p class="fragment"><a href="http://redmonk.com/jgovernor/2010/10/22/vmware-ceo-django-rails-open-frameworks-apps-as-commodity-and-the-new-kingmakers/">VMWare</a></p>
-						<p class="fragment"><a href="https://developer.vodafone.com/">Vodafone</a></p>
-					</div>
-					<aside data-markdown class="notes">
-						<script type="text/template">
-							* National Geographic nutzt ein eigenes CMS aus Basis von Django
-							* PBS hat auch "The News Hour with Jim Lehrer" und "American Experience" mit Django gebaut
-							* "ZDF - Die letzte Spur" ist ein Online-Spiel zur Fernsehsendung
-							* Disqus, Instagram und Rdio nutzen Django als Backend
-							* ubuntuusers.de: Portal, das auf Django basiert - inkl. Forum und Wiki
-							* Vodafone: Mobile Apps Developer Portal mit Django gebaut
-						</script>
-					</aside>
-				</section>
-				<section>
-					<h2>Deutscher Django-Verein e.V.</h2>
-					<ul>
-						<li>Gegründet im Dezember 2009</li>
-						<li>Kommunikation der Entwickler und Anwender fördern</li>
-						<li>Weiterentwicklung von Django voran treiben</li>
-						<li><a href="http://www.django-de.org/">www.django-de.org</a></li>
-					</ul>
-				</section>
-				<section>
-					<h2>Weiterführende Links</h2>
-					<ul class="nobullets">
-						<li><a href="https://www.djangoproject.com/">www.djangoproject.com</a>
-							<br><small>Django Website</small></li>
-						<li><a href="https://docs.djangoproject.com/">docs.djangoproject.com</a>
-							<br><small>Django Dokumentation</small></li>
-						<li><a href="http://www.revsys.com/django/cheatsheet/">www.revsys.com/django/cheatsheet</a>
-							<br><small>Django Cheat Sheet von Revolution Systems</small></li>
-						<li><a href="http://ccbv.co.uk/">ccbv.co.uk</a>
-							<br><small>Dokumentation der Django Class-Based Views</small></li>
-						<li><a href="http://www.djangopackages.com/">www.djangopackages.com</a>
-							<br><small>Django Packages</small></li>
-						<li><a href="http://djangosnippets.org/">djangosnippets.org</a>
-							<br><small>Django snippets</small></li>
-					</ul>
-				</section>
-				<section>
-					<h2>Nützliche Django-Anwendungen</h2>
-					<p><pre><code class="bash">pip install &lt;app-name&gt;</code></pre></p>
-					<div style="float: left; width: 50%;">
-						<p class="fragment"><a href="http://south.aeracode.org/">South</a></p>
-						<p class="fragment"><a href="https://github.com/django-debug-toolbar/django-debug-toolbar">django-debug-toolbar</a></p>
-						<p class="fragment"><a href="https://github.com/dcramer/django-devserver">django-devserver</a></p>
-						<p class="fragment"><a href="https://github.com/brack3t/django-braces">django-braces</a></p>
-						<p class="fragment"><a href="https://github.com/maraujop/django-crispy-forms">django-crispy-forms</a></p>
-						<p class="fragment"><a href="https://github.com/agiliq/django-parsley">django-parsley</a></p>
-						<p class="fragment"><a href="http://haystacksearch.org/">django-haystack</a></p>
-						<p class="fragment"><a href="https://github.com/celery/django-celery/">django-celery</a></p>
-					</div>
-					<div style="float: right; width: 50%;">
-						<p class="fragment"><a href="https://github.com/toastdriven/django-tastypie">django-tastypie</a></p>
-						<p class="fragment"><a href="https://github.com/tomchristie/django-rest-framework">djangorestframework</a></p>
-						<p class="fragment"><a href="https://github.com/dnerdy/factory_boy">factory_boy</a>
-						<p class="fragment"><a href="https://github.com/gabrielfalcao/HTTPretty">httpretty</a></p>
-						<p class="fragment"><a href="https://github.com/kmmbvnr/django-jenkins">django-jenkins</a></p>
-						<p class="fragment"><a href="http://gunicorn.org/">gunicorn</a></p>
-						<p class="fragment"><a href="https://github.com/jezdez/django_compressor">django_compressor</a></p>
-						<p class="fragment"><a href="https://pypi.python.org/pypi/django-secure">django-secure</a></p>
-					</div>
-					<aside class="notes">
-						<ul style="font-size: 0.6em;">
-							<li>South - Datenbank-Migration</li>
-							<li>django-debug-toolbar - schöner Debugging-Toolbar, vielfach erweiterbar</li>
-							<li>django-devserver - Ersatz für das eingebaute runserver Kommando</li>
-							<li>django-braces - Ein paar nützliche Helfer für Class-Based Views</li>
-							<li>django-crispy-forms - wiederverwendbare Layouts, ohne dass HTML in Templates geschrieben werden muss</li>
-							<li>django-parsley - Client-seitige Formular-Validierung mit Parsley.js</li>
-							<li>django-haystack - Modulare Such-App, unterstützt Solr, Elasticsearch, Whoosh und Xapian</li>
-							<li>django-celery - Django-Integration für die asynchrone Task-Queue/Job-Queue Celery</li>
-							<li>django-tastypie - REST-Framework für Django</li>
-							<li>djangorestframework - REST-Framework für Django</li>
-							<li>factory_boy - Fixture-Generator</li>
-							<li>httpretty - Mocks für HTTP Requests</li>
-							<li>django-jenkins - Einfache Integration von Jenkins</li>
-							<li>gunicorn - Python WSGI HTTP Server für Unix</li>
-							<li>django_compressor - Komprimiert JavaScript oder CSS in eine einzige, cachbare Datei</li>
-							<li>django-secure - Werkzeuge, um deine Django-Site sicherer zu machen</li>
-						</ul>
-					</aside>
-				</section>
-				<section>
-					<section>
-						<h2>Danksagung</h2>
-						<p><a href="https://www.djangoproject.com/community/">Django Community</a></p>
-						<p><a href="https://github.com/hakimel/reveal.js">reveal.js</a></p>
-						<p><a href="http://raphaeljs.com/">Raphaël</a></p>
-						<p>Ross Crawford-d'Heureuse<br><small>(Englische Übersetzung)</small></p>
-						<p>Frank Becker</p>
-					</section>
-					<section>
-						<h2>Bildquellen</h2>
-						<ul>
-							<li>Django und das Django Logo sind eingetragene Warenzeichen der <a href="https://www.djangoproject.com/foundation/">Django Software Foundation</a></li>
-							<li>Django Reinhardt Porträt: <a href="https://commons.wikimedia.org/wiki/File:Django_Reinhardt_(Gottlieb_07301).jpg">Wikimedia Commons/William P. Gottlieb (gemeinfrei)</a></li>
-						</ul>
-					</section>
-					<section>
-						<h2>Lizenz</h2>
-						<p><small>Dieses Werk steht unter einer
-							<br><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.de">Creative Commons
-							<br>Namensnennung - Weitergabe unter gleichen Bedingungen 3.0 Unported Lizenz</a></small></p>
-						<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.de"><img alt="Creative Commons Lizenzvertrag" style="border-width:0" src="img/cc-by-sa.png"></a>
-					</section>
-				</section>
-			</div>
+                        </code></pre>
+                        <aside data-markdown class="notes">
+                            <script type="text/template">
+                                * nur Python und Django sind notwendig
+                                * wesentlich schlanker als ein LAMP- oder Java-Stack
+                            </script>
+                        </aside>
+                    </section>
+                </section>
+                <section data-state="development-process">
+                    <h2>Entwicklungsprozess</h2>
+                    <p id="development-process">
+                    <aside data-markdown class="notes">
+                        <script type="text/template">
+                            * Redakteure pflegen nach dem Erstellen von Models und Admin schon Inhalte
+                            * parallel bauen die Entwickler das Frontend
+                            * dadurch kommt man schneller zum Launch
+                        </script>
+                    </aside>
+                </section>
+                <section>
+                    <h2>Django Releases</h2>
+                    <ul>
+                        <li><a href="https://docs.djangoproject.com/en/dev/internals/release-process/">Minor Release alle neun Monate</a></li>
+                        <li>API bleibt stabil und abwärtskompatibel</li>
+                        <li>Klare und dokumentierte <a href="https://docs.djangoproject.com/en/dev/internals/deprecation/">Deprecation Timeline</a></li>
+                        <li><a href="https://docs.djangoproject.com/en/dev/topics/python3/">Python 3 Unterstützung</a> seit Django 1.5</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Django in Zahlen</h2>
+                    <ul>
+                        <li class="fragment">6.000.000 Besucher der Website pro Monat</li>
+                        <li class="fragment">21.700 Abonnenten der <a href="http://groups.google.com/group/django-users">django-users Mailing Liste</a></li>
+                        <li class="fragment">über 2.000 Packages im <a href="https://pypi.python.org/pypi">Python Packaging Index</a> (mehr als 10%)</li>
+                        <li class="fragment">33 Kern-Entwickler</li>
+                        <li class="fragment">über 65 Übersetzungen</li>
+                    </ul>
+                    <p class="fragment"><small>Stand Mitte 2012
+                        <br>Quelle: <a href="http://jacobian.org/writing/django-community/django-community-2012/">
+                        Measuring the Django Community: The Django community in 2012</a></small></p>
+                </section>
+                <section>
+                    <h2>Django in freier Wildbahn</h2>
+                    <div style="float: left; width: 50%;">
+                        <p class="fragment"><a href="http://www.guardiannews.com/">The Guardian</a></p>
+                        <p class="fragment"><a href="http://www.nytimes.com/">The New York Times</a></p>
+                        <p class="fragment"><a href="http://www.washingtonpost.com/">Washington Post</a></p>
+                        <p class="fragment"><a href="http://www.discovery.com/">Discovery Channel</a></p>
+                        <p class="fragment"><a href="http://www.nationalgeographic.com/">National Geographic</a></p>
+                        <p class="fragment"><a href="http://pbskids.org/">PBS Kids</a></p>
+                        <p class="fragment"><a href="http://spiel.letztespurberlin.zdf.de/spiel/">ZDF - Die letzte Spur</a></p>
+                        <p class="fragment"><a href="http://science.nasa.gov/">NASA Science</a></p>
+                    </div>
+                    <div style="float: right; width: 50%;">
+                        <p class="fragment"><a href="http://disqus.com/">Disqus</a></p>
+                        <p class="fragment"><a href="http://instagr.am/">Instagram</a></p>
+                        <p class="fragment"><a href="http://www.rdio.com/">Rdio</a></p>
+                        <p class="fragment"><a href="https://bitbucket.org/">BitBucket</a></p>
+                        <p class="fragment"><a href="https://addons.mozilla.org/">Mozilla Add-Ons</a></p>
+                        <p class="fragment"><a href="http://ubuntuusers.de/inyoka/">ubuntuusers.de</a></p>
+                        <p class="fragment"><a href="http://redmonk.com/jgovernor/2010/10/22/vmware-ceo-django-rails-open-frameworks-apps-as-commodity-and-the-new-kingmakers/">VMWare</a></p>
+                        <p class="fragment"><a href="https://developer.vodafone.com/">Vodafone</a></p>
+                    </div>
+                    <aside data-markdown class="notes">
+                        <script type="text/template">
+                            * National Geographic nutzt ein eigenes CMS aus Basis von Django
+                            * PBS hat auch "The News Hour with Jim Lehrer" und "American Experience" mit Django gebaut
+                            * "ZDF - Die letzte Spur" ist ein Online-Spiel zur Fernsehsendung
+                            * Disqus, Instagram und Rdio nutzen Django als Backend
+                            * ubuntuusers.de: Portal, das auf Django basiert - inkl. Forum und Wiki
+                            * Vodafone: Mobile Apps Developer Portal mit Django gebaut
+                        </script>
+                    </aside>
+                </section>
+                <section>
+                    <h2>Deutscher Django-Verein e.V.</h2>
+                    <ul>
+                        <li>Gegründet im Dezember 2009</li>
+                        <li>Kommunikation der Entwickler und Anwender fördern</li>
+                        <li>Weiterentwicklung von Django voran treiben</li>
+                        <li><a href="http://www.django-de.org/">www.django-de.org</a></li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Weiterführende Links</h2>
+                    <ul class="nobullets">
+                        <li><a href="https://www.djangoproject.com/">www.djangoproject.com</a>
+                            <br><small>Django Website</small></li>
+                        <li><a href="https://docs.djangoproject.com/">docs.djangoproject.com</a>
+                            <br><small>Django Dokumentation</small></li>
+                        <li><a href="http://www.revsys.com/django/cheatsheet/">www.revsys.com/django/cheatsheet</a>
+                            <br><small>Django Cheat Sheet von Revolution Systems</small></li>
+                        <li><a href="http://ccbv.co.uk/">ccbv.co.uk</a>
+                            <br><small>Dokumentation der Django Class-Based Views</small></li>
+                        <li><a href="http://www.djangopackages.com/">www.djangopackages.com</a>
+                            <br><small>Django Packages</small></li>
+                        <li><a href="http://djangosnippets.org/">djangosnippets.org</a>
+                            <br><small>Django snippets</small></li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Nützliche Django-Anwendungen</h2>
+                    <p><pre><code class="bash">pip install &lt;app-name&gt;</code></pre></p>
+                    <div style="float: left; width: 50%;">
+                        <p class="fragment"><a href="http://south.aeracode.org/">South</a></p>
+                        <p class="fragment"><a href="https://github.com/django-debug-toolbar/django-debug-toolbar">django-debug-toolbar</a></p>
+                        <p class="fragment"><a href="https://github.com/dcramer/django-devserver">django-devserver</a></p>
+                        <p class="fragment"><a href="https://github.com/brack3t/django-braces">django-braces</a></p>
+                        <p class="fragment"><a href="https://github.com/maraujop/django-crispy-forms">django-crispy-forms</a></p>
+                        <p class="fragment"><a href="https://github.com/agiliq/django-parsley">django-parsley</a></p>
+                        <p class="fragment"><a href="http://haystacksearch.org/">django-haystack</a></p>
+                        <p class="fragment"><a href="https://github.com/celery/django-celery/">django-celery</a></p>
+                    </div>
+                    <div style="float: right; width: 50%;">
+                        <p class="fragment"><a href="https://github.com/toastdriven/django-tastypie">django-tastypie</a></p>
+                        <p class="fragment"><a href="https://github.com/tomchristie/django-rest-framework">djangorestframework</a></p>
+                        <p class="fragment"><a href="https://github.com/dnerdy/factory_boy">factory_boy</a>
+                        <p class="fragment"><a href="https://github.com/gabrielfalcao/HTTPretty">httpretty</a></p>
+                        <p class="fragment"><a href="https://github.com/kmmbvnr/django-jenkins">django-jenkins</a></p>
+                        <p class="fragment"><a href="http://gunicorn.org/">gunicorn</a></p>
+                        <p class="fragment"><a href="https://github.com/jezdez/django_compressor">django_compressor</a></p>
+                        <p class="fragment"><a href="https://pypi.python.org/pypi/django-secure">django-secure</a></p>
+                    </div>
+                    <aside class="notes">
+                        <ul style="font-size: 0.6em;">
+                            <li>South - Datenbank-Migration</li>
+                            <li>django-debug-toolbar - schöner Debugging-Toolbar, vielfach erweiterbar</li>
+                            <li>django-devserver - Ersatz für das eingebaute runserver Kommando</li>
+                            <li>django-braces - Ein paar nützliche Helfer für Class-Based Views</li>
+                            <li>django-crispy-forms - wiederverwendbare Layouts, ohne dass HTML in Templates geschrieben werden muss</li>
+                            <li>django-parsley - Client-seitige Formular-Validierung mit Parsley.js</li>
+                            <li>django-haystack - Modulare Such-App, unterstützt Solr, Elasticsearch, Whoosh und Xapian</li>
+                            <li>django-celery - Django-Integration für die asynchrone Task-Queue/Job-Queue Celery</li>
+                            <li>django-tastypie - REST-Framework für Django</li>
+                            <li>djangorestframework - REST-Framework für Django</li>
+                            <li>factory_boy - Fixture-Generator</li>
+                            <li>httpretty - Mocks für HTTP Requests</li>
+                            <li>django-jenkins - Einfache Integration von Jenkins</li>
+                            <li>gunicorn - Python WSGI HTTP Server für Unix</li>
+                            <li>django_compressor - Komprimiert JavaScript oder CSS in eine einzige, cachbare Datei</li>
+                            <li>django-secure - Werkzeuge, um deine Django-Site sicherer zu machen</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>
+                    <section>
+                        <h2>Danksagung</h2>
+                        <p><a href="https://www.djangoproject.com/community/">Django Community</a></p>
+                        <p><a href="https://github.com/hakimel/reveal.js">reveal.js</a></p>
+                        <p><a href="http://raphaeljs.com/">Raphaël</a></p>
+                        <p>Ross Crawford-d'Heureuse<br><small>(Englische Übersetzung)</small></p>
+                        <p>Frank Becker</p>
+                    </section>
+                    <section>
+                        <h2>Bildquellen</h2>
+                        <ul>
+                            <li>Django und das Django Logo sind eingetragene Warenzeichen der <a href="https://www.djangoproject.com/foundation/">Django Software Foundation</a></li>
+                            <li>Django Reinhardt Porträt: <a href="https://commons.wikimedia.org/wiki/File:Django_Reinhardt_(Gottlieb_07301).jpg">Wikimedia Commons/William P. Gottlieb (gemeinfrei)</a></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Lizenz</h2>
+                        <p><small>Dieses Werk steht unter einer
+                            <br><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.de">Creative Commons
+                            <br>Namensnennung - Weitergabe unter gleichen Bedingungen 3.0 Unported Lizenz</a></small></p>
+                        <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.de"><img alt="Creative Commons Lizenzvertrag" style="border-width:0" src="img/cc-by-sa.png"></a>
+                    </section>
+                </section>
+            </div>
 
-		</div>
+        </div>
 
-		<script src="reveal.js/lib/js/head.min.js"></script>
-		<script src="reveal.js/js/reveal.min.js"></script>
-		<script src="js/raphael-min.js"></script>
-		<script src="js/raphael-chart.js"></script>
+        <script src="reveal.js/lib/js/head.min.js"></script>
+        <script src="reveal.js/js/reveal.min.js"></script>
+        <script src="js/raphael-min.js"></script>
+        <script src="js/raphael-chart.js"></script>
 
-		<script>
-			// Full list of configuration options available here:
-			// https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
+        <script>
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
 
-				theme: Reveal.getQueryHash().theme || 'default', // available themes are in /css/theme
-				transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/linear(2d)
+                theme: Reveal.getQueryHash().theme || 'night', // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/linear(2d)
 
-				// Optional libraries used to extend on reveal.js
-				dependencies: [
-					{ src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'reveal.js/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-					{ src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
-					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
-				]
-			});
-			// global colors for all charts
-			var colors = {
-				blue: Raphael.rgb(98, 147, 254),
-				green: Raphael.rgb(85, 142, 40),
-				orange: Raphael.rgb(253, 154, 0),
-				silver: Raphael.rgb(204, 204, 204)
-			};
-			// request-response chart
-			(function() {
-				var paper = Raphael('request-response', 830, 600);
-				var width = 220;
-				var textSize = 24;
-				Reveal.addEventListener('request-response', function(event) {
-					paper.clear();
-					chart.paper = paper;
-					ws = chart.rect('Webserver', 400, 50, colors.blue, width);
-					url = chart.rect('URLConf', 120, 150, colors.green, width);
-					mw = chart.rect('Middleware', 700, 50, colors.orange, width);
-					view = chart.rect('View', 400, 250, colors.green, width);
-					orm = chart.rect('Model (ORM)', 400, 400, colors.green, width);
-					tpl = chart.rect('Template', 700, 350, colors.green, width);
-					tf = chart.rect('Tags & Filter', 700, 500, colors.green, width);
-					db = chart.rect('Datenbank', 400, 550, colors.blue, width);
-					chart.pointTo(ws, 'left', url, 'top', colors.silver).label(
-						'process_request', colors.orange, textSize);
-					chart.pointTo(url, 'bottom', view, 'left', colors.silver).label(
-						'process_view', colors.orange, textSize, 'left', 40);
-					chart.pointTo(view, 'bottom', orm, 'top', colors.silver, 30);
-					chart.pointTo(orm, 'bottom', db, 'top', colors.silver, 30);
-					chart.pointTo(db, 'top', orm, 'bottom', colors.silver, -30);
-					chart.pointTo(orm, 'top', view, 'bottom', colors.silver, -30);
-					chart.connect(view, 'right', tpl, 'top', colors.silver);
-					chart.pointTo(tpl, 'bottom', tf, 'top', colors.silver, 30);
-					chart.pointTo(tf, 'top', tpl, 'bottom', colors.silver, -30);
-					chart.pointTo(view, 'top', ws, 'bottom', colors.silver).label(
-						'process_template_response\nprocess_response', colors.orange, textSize, 'right', 180);
-				});
-			}());
-			// development-process chart
-			(function() {
-				var paper = Raphael('development-process', 820, 550);
-				Reveal.addEventListener('development-process', function(event) {
-					paper.clear();
-					chart.paper = paper;
-					launch = chart.rect('Launch', 400, 50, colors.green, 600);
-					templates = chart.rect('Templates anlegen', 600, 200, colors.green, 350);
-					views = chart.rect('Views anlegen', 600, 350, colors.green, 350);
-					contents = chart.rect('Inhalte erstellen', 200, 350, colors.green, 350);
-					models = chart.rect('Models & Admin anlegen', 400, 500, colors.green, 600);
-					chart.pointTo(models, 'top', contents, 'bottom', colors.orange, [200, 0]);
-					chart.pointTo(models, 'top', views, 'bottom', colors.orange, [-200, 0]);
-					chart.pointTo(contents, 'top', launch, 'bottom', colors.orange, [0, 200]);
-					chart.pointTo(views, 'top', templates, 'bottom', colors.orange);
-					chart.pointTo(templates, 'top', launch, 'bottom', colors.orange, [0, -200]);
-				});
-			}());
-		</script>
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'reveal.js/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                    // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+            // global colors for all charts
+            var colors = {
+                blue: Raphael.rgb(98, 147, 254),
+                green: Raphael.rgb(85, 142, 40),
+                orange: Raphael.rgb(253, 154, 0),
+                silver: Raphael.rgb(204, 204, 204)
+            };
+            // request-response chart
+            (function() {
+                var paper = Raphael('request-response', 830, 600);
+                var width = 220;
+                var textSize = 24;
+                Reveal.addEventListener('request-response', function(event) {
+                    paper.clear();
+                    chart.paper = paper;
+                    ws = chart.rect('Webserver', 400, 50, colors.blue, width);
+                    url = chart.rect('URLConf', 120, 150, colors.green, width);
+                    mw = chart.rect('Middleware', 700, 50, colors.orange, width);
+                    view = chart.rect('View', 400, 250, colors.green, width);
+                    orm = chart.rect('Model (ORM)', 400, 400, colors.green, width);
+                    tpl = chart.rect('Template', 700, 350, colors.green, width);
+                    tf = chart.rect('Tags & Filter', 700, 500, colors.green, width);
+                    db = chart.rect('Datenbank', 400, 550, colors.blue, width);
+                    chart.pointTo(ws, 'left', url, 'top', colors.silver).label(
+                        'process_request', colors.orange, textSize);
+                    chart.pointTo(url, 'bottom', view, 'left', colors.silver).label(
+                        'process_view', colors.orange, textSize, 'left', 40);
+                    chart.pointTo(view, 'bottom', orm, 'top', colors.silver, 30);
+                    chart.pointTo(orm, 'bottom', db, 'top', colors.silver, 30);
+                    chart.pointTo(db, 'top', orm, 'bottom', colors.silver, -30);
+                    chart.pointTo(orm, 'top', view, 'bottom', colors.silver, -30);
+                    chart.connect(view, 'right', tpl, 'top', colors.silver);
+                    chart.pointTo(tpl, 'bottom', tf, 'top', colors.silver, 30);
+                    chart.pointTo(tf, 'top', tpl, 'bottom', colors.silver, -30);
+                    chart.pointTo(view, 'top', ws, 'bottom', colors.silver).label(
+                        'process_template_response\nprocess_response', colors.orange, textSize, 'right', 180);
+                });
+            }());
+            // development-process chart
+            (function() {
+                var paper = Raphael('development-process', 820, 550);
+                Reveal.addEventListener('development-process', function(event) {
+                    paper.clear();
+                    chart.paper = paper;
+                    launch = chart.rect('Launch', 400, 50, colors.green, 600);
+                    templates = chart.rect('Templates anlegen', 600, 200, colors.green, 350);
+                    views = chart.rect('Views anlegen', 600, 350, colors.green, 350);
+                    contents = chart.rect('Inhalte erstellen', 200, 350, colors.green, 350);
+                    models = chart.rect('Models & Admin anlegen', 400, 500, colors.green, 600);
+                    chart.pointTo(models, 'top', contents, 'bottom', colors.orange, [200, 0]);
+                    chart.pointTo(models, 'top', views, 'bottom', colors.orange, [-200, 0]);
+                    chart.pointTo(contents, 'top', launch, 'bottom', colors.orange, [0, 200]);
+                    chart.pointTo(views, 'top', templates, 'bottom', colors.orange);
+                    chart.pointTo(templates, 'top', launch, 'bottom', colors.orange, [0, -200]);
+                });
+            }());
+        </script>
 
-	</body>
+    </body>
 </html>
