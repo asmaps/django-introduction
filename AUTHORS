@@ -1,8 +1,3 @@
-PRIMARY AUTHOR:
+Made by Arne Schauf <arne.schauf@asmaps.de>
 
-    * Markus Zapke-Gründemann <markus@keimlink.de>
-
-CONTRIBUTORS:
-
-    * Frank Becker <fb@maysoba.com>
-    * Ross Crawford-d'Heureuse
+Based on the django-introduction (https://bitbucket.org/keimlink/django-introduction) by Markus Zapke-Gründemann <markus@keimlink.de>
