@@ -12,18 +12,18 @@
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-        <link rel="stylesheet" href="http://presentation.selfnet.de/arnes/django-introduction/css/reveal.min.css">
-        <link rel="stylesheet" href="http://presentation.selfnet.de/arnes/django-introduction/css/theme/night.css" id="theme">
-        <link rel="stylesheet" href="http://presentation.selfnet.de/arnes/django-introduction/css/custom.css">
+        <link rel="stylesheet" href="css/reveal.min.css">
+        <link rel="stylesheet" href="css/theme/night.css" id="theme">
+        <link rel="stylesheet" href="css/custom.css">
 
         <!-- For syntax highlighting -->
-        <link rel="stylesheet" href="http://presentation.selfnet.de/arnes/django-introduction/lib/css/zenburn.css">
+        <link rel="stylesheet" href="lib/css/zenburn.css">
 
         <!-- If the query includes 'print-pdf', use the PDF print sheet -->
         <script>
-            document.write( '<link rel="stylesheet" href="http://presentation.selfnet.de/arnes/django-introduction/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+            document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
         </script>
-        <link rel="stylesheet" href="http://presentation.selfnet.de/arnes/django-introduction/css/print/paper.css" type="text/css" media="print">
+        <link rel="stylesheet" href="css/print/paper.css" type="text/css" media="print">
     </head>
 
     <body>
@@ -36,10 +36,10 @@
             <!-- Any section element inside of this container is displayed as a slide -->
             <div class="slides">
                 <section class="add-padding">
-                    <embed name="django-logo-negative" src="http://presentation.selfnet.de/arnes/django-introduction/img/django-logo-negative.svg" width="505" height="216">
+                    <embed name="django-logo-negative" src="img/django-logo-negative.svg" width="505" height="216">
                     <p>Schnell performante<br>Web-Applikationen entwickeln</p>
                     <p>Eine Einführung</p>
-                    <p>Live mitlesen auf <br><a class="roll" href="http://presentation.selfnet.de/arnes/django-introduction/django-introduction/"><span>http://presentation.selfnet.de/arnes/django-introduction/django-introduction/</span></a></p>
+                    <p>Live mitlesen auf <br><a class="roll" href="http://presentation.selfnet.de/"><span>http://presentation.selfnet.de/</span></a></p>
                     <hr>
                     <p>Ein Vortrag von Arne Schauf für das
                         <a href="http://nethack.selfnet.de/">NetHack 2013</a></p>
@@ -82,7 +82,7 @@
                     <section>
                         <h2>Django Reinhardt</h2>
                         <a class="image" href="https://commons.wikimedia.org/wiki/File:Django_Reinhardt_(Gottlieb_07301).jpg" target="_blank">
-                            <img width="431" height="450" src="http://presentation.selfnet.de/arnes/django-introduction/img/django_reinhardt.jpg" alt="Django Reinhardt spielt Gitarre">
+                            <img width="431" height="450" src="img/django_reinhardt.jpg" alt="Django Reinhardt spielt Gitarre">
                         </a>
                         <p><small>* 23.1.1910</small><small style="padding-left: 2em">✝ 16.5.1953</small></p>
                         <aside data-markdown class="notes">
@@ -170,15 +170,15 @@
                     </section>
                     <section>
                         <h2>Admin</h2>
-                        <img src="http://presentation.selfnet.de/arnes/django-introduction/img/de/admin1.png" alt="Admin - Login">
+                        <img src="img/de/admin1.png" alt="Admin - Login">
                     </section>
                     <section>
                         <h2>Admin</h2>
-                        <img src="http://presentation.selfnet.de/arnes/django-introduction/img/de/admin2.png" alt="Admin - Datensatz erstellen">
+                        <img src="img/de/admin2.png" alt="Admin - Datensatz erstellen">
                     </section>
                     <section>
                         <h2>Admin</h2>
-                        <img src="http://presentation.selfnet.de/arnes/django-introduction/img/de/admin3.png" alt="Admin - Listenansicht">
+                        <img src="img/de/admin3.png" alt="Admin - Listenansicht">
                     </section>
                     <section>
                         <h2>Eingebauter Entwicklungsserver</h2>
@@ -365,17 +365,17 @@ Quit the server with CONTROL-C.
                         <p><small>Dieses Werk steht unter einer
                             <br><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.de">Creative Commons
                             <br>Namensnennung - Weitergabe unter gleichen Bedingungen 3.0 Unported Lizenz</a></small></p>
-                        <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.de"><img alt="Creative Commons Lizenzvertrag" style="border-width:0" src="http://presentation.selfnet.de/arnes/django-introduction/img/cc-by-sa.png"></a>
+                        <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.de"><img alt="Creative Commons Lizenzvertrag" style="border-width:0" src="img/cc-by-sa.png"></a>
                     </section>
                 </section>
             </div>
 
         </div>
 
-        <script src="http://presentation.selfnet.de/arnes/django-introduction/lib/js/head.min.js"></script>
-        <script src="http://presentation.selfnet.de/arnes/django-introduction/js/reveal.min.js"></script>
-        <script src="http://presentation.selfnet.de/arnes/django-introduction/js/raphael-min.js"></script>
-        <script src="http://presentation.selfnet.de/arnes/django-introduction/js/raphael-chart.js"></script>
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.min.js"></script>
+        <script src="js/raphael-min.js"></script>
+        <script src="js/raphael-chart.js"></script>
 
         <script>
             // Full list of configuration options available here:
@@ -389,16 +389,26 @@ Quit the server with CONTROL-C.
                 theme: Reveal.getQueryHash().theme || 'night', // available themes are in /css/theme
                 transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/linear(2d)
 
+                multiplex: {
+                    // Example values. To generate your own, see the socket.io server instructions.
+                    secret: null, // Obtained from the socket.io server. Gives this (the master) control of the presentation
+                    id: 'a4c4146d353802a5', // Obtained from socket.io server
+                    url: 'presentation.selfnet.de:1948' // Location of socket.io server
+                },
+
                 // Optional libraries used to extend on reveal.js
                 dependencies: [
-                    { src: 'http://presentation.selfnet.de/arnes/django-introduction/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-                    { src: 'http://presentation.selfnet.de/arnes/django-introduction/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-                    { src: 'http://presentation.selfnet.de/arnes/django-introduction/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-                    { src: 'http://presentation.selfnet.de/arnes/django-introduction/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-                    { src: 'http://presentation.selfnet.de/arnes/django-introduction/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-                    { src: 'http://presentation.selfnet.de/arnes/django-introduction/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
-                    { src: 'http://presentation.selfnet.de/arnes/django-introduction/socket.io/socket.io.js', async: true },
-                    { src: 'http://presentation.selfnet.de/arnes/django-introduction/plugin/notes-server/client.js', async: true }
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: '//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.10/socket.io.min.js', async: true },
+                    { src: 'plugin/multiplex/master.js', async: true },
+
+                    // and if you want speaker notes
+                    { src: 'plugin/notes-server/client.js', async: true }
                     // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
                 ]
             });
