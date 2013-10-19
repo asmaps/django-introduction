@@ -396,7 +396,9 @@ Quit the server with CONTROL-C.
                     { src: 'http://presentation.selfnet.de/arnes/django-introduction/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
                     { src: 'http://presentation.selfnet.de/arnes/django-introduction/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
                     { src: 'http://presentation.selfnet.de/arnes/django-introduction/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-                    { src: 'http://presentation.selfnet.de/arnes/django-introduction/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                    { src: 'http://presentation.selfnet.de/arnes/django-introduction/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'http://presentation.selfnet.de/arnes/django-introduction/socket.io/socket.io.js', async: true },
+                    { src: 'http://presentation.selfnet.de/arnes/django-introduction/plugin/notes-server/client.js', async: true }
                     // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
                 ]
             });
